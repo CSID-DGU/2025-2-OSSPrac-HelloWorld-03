@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 정보 페이지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index_style.css') }}">
+    <script>
+        function openInputPage() {
+            window.location.href = "/input";
+        }
+        function openContactPage() {
+            window.location.href = "/contact";
+        }
+    </script>
+</head>
+<body>
+    <h1>우리 팀 소개</h1>
+    <div>
+        <video width="740" height="360" muted autoplay loop playsinline>
+            <source src="{{ url_for('static', filename='output.mp4') }}" type="video/mp4">
+            브라우저가 video 태그를 지원하지 않습니다.
+        </video>
+    </div>
+    <div class="team-info">
+        <h2>팀명: {{ team_name }}</h2>
+        <h3>팀장: {{ leader.name }} ({{ leader.department }})</h3>
+        <p><b>역할:</b> {{ leader.role }}</p>
+        <p>📧 {{ leader.email }} | ☎️ {{ leader.phone }}</p>
+    </div>
+
+    <h3>팀원 소개</h3>
+    <div class="container">
+        {% for member in members %}
+        <div class="member">
+            <img src="{{ url_for('static', filename=member.photo) }}" alt="사진">
+            <p><b>이름:</b> {{ member.name }}</p>
+            <p><b>역할:</b> {{ member.role }}</p>
+            <p><b>학과:</b> {{ member.department }}</p>
+            <p><b>이메일:</b> {{ member.email }}</p>
+            <p><b>전화번호:</b> {{ member.phone }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="btn-area">
+        <button type="button" onclick="openInputPage()">정보 입력 페이지</button>
+        <button type="button" onclick="openContactPage()">전화번호 입력 페이지</button>
+    </div>
+</body>
+</html>

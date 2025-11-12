@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>팀 정보 수정</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='input_style.css') }}">
+    <script>
+        function addMember() {
+            const container = document.getElementById("members");
+            const div = document.createElement("div");
+            div.className = "block";
+            div.innerHTML = `
+                <p>이름: <input type="text" name="member_name[]" required></p>
+                <p>성별:
+                    <select name="member_gender[]" required>
+                        <option value="">선택</option>
+                        <option value="남">남</option>
+                        <option value="여">여</option>
+                    </select>
+                </p>
+                <p>역할: <input type="text" name="member_role[]" required></p>
+                <p>학과: <input type="text" name="member_department[]" required></p>
+                <p>프로그래밍 언어:
+                    <select name="member_language[]" required>
+                        <option value="">선택</option>
+                        <option value="Python">Python</option>
+                        <option value="C">C</option>
+                        <option value="C++">C++</option>
+                        <option value="Java">Java</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Swift">Swift</option>
+                        <option value="Kotlin">Kotlin</option>
+                    </select>
+                </p>
+                <p>이메일: <input type="email" name="member_email[]" required></p>
+                <p>사진 URL: <input type="text" name="member_photo[]" placeholder="images/member.jpg"></p>
+            `;
+            container.appendChild(div);
+        }
+    </script>
+</head>
+<body>
+    <h1>팀 정보 수정</h1>
+    <form action="/result" method="POST">
+        <p>팀명: <input type="text" name="team_name" value="{{ team_name }}" required></p>
+
+        <h3>팀장 정보</h3>
+        <div class="block">
+            <p>이름: <input type="text" name="leader_name" value="{{ leader.name }}" required></p>
+            <p>성별:
+                <select name="leader_gender" required>
+                    <option value="">선택</option>
+                    <option value="남" {% if leader.gender == '남' %}selected{% endif %}>남</option>
+                    <option value="여" {% if leader.gender == '여' %}selected{% endif %}>여</option>
+                </select>
+            </p>
+            <p>역할: <input type="text" name="leader_role" value="{{ leader.role }}" required></p>
+            <p>학과: <input type="text" name="leader_department" value="{{ leader.department }}" required></p>
+            <p>프로그래밍 언어:
+                <select name="leader_language" required>
+                    <option value="">선택</option>
+                    <option value="Python" {% if leader.language == 'Python' %}selected{% endif %}>Python</option>
+                    <option value="C" {% if leader.language == 'C' %}selected{% endif %}>C</option>
+                    <option value="C++" {% if leader.language == 'C++' %}selected{% endif %}>C++</option>
+                    <option value="Java" {% if leader.language == 'Java' %}selected{% endif %}>Java</option>
+                    <option value="JavaScript" {% if leader.language == 'JavaScript' %}selected{% endif %}>JavaScript</option>
+                    <option value="Swift" {% if leader.language == 'Swift' %}selected{% endif %}>Swift</option>
+                    <option value="Kotlin" {% if leader.language == 'Kotlin' %}selected{% endif %}>Kotlin</option>
+                </select>
+            </p>
+            <p>이메일: <input type="email" name="leader_email" value="{{ leader.email }}" required></p>
+            <p>사진 URL: <input type="text" name="leader_photo" value="{{ leader.photo }}" placeholder="images/leader.jpg"></p>
+        </div>
+
+        <h3>팀원 정보</h3>
+        <div id="members">
+            {% for m in members %}
+            <div class="block">
+                <p>이름: <input type="text" name="member_name[]" value="{{ m.name }}" required></p>
+                <p>성별:
+                    <select name="member_gender[]" required>
+                        <option value="">선택</option>
+                        <option value="남" {% if m.gender == '남' %}selected{% endif %}>남</option>
+                        <option value="여" {% if m.gender == '여' %}selected{% endif %}>여</option>
+                    </select>
+                </p>
+                <p>역할: <input type="text" name="member_role[]" value="{{ m.role }}" required></p>
+                <p>학과: <input type="text" name="member_department[]" value="{{ m.department }}" required></p>
+                <p>프로그래밍 언어:
+                    <select name="member_language[]" required>
+                        <option value="">선택</option>
+                        <option value="Python" {% if m.language == 'Python' %}selected{% endif %}>Python</option>
+                        <option value="C" {% if m.language == 'C' %}selected{% endif %}>C</option>
+                        <option value="C++" {% if m.language == 'C++' %}selected{% endif %}>C++</option>
+                        <option value="Java" {% if m.language == 'Java' %}selected{% endif %}>Java</option>
+                        <option value="JavaScript" {% if m.language == 'JavaScript' %}selected{% endif %}>JavaScript</option>
+                        <option value="Swift" {% if m.language == 'Swift' %}selected{% endif %}>Swift</option>
+                        <option value="Kotlin" {% if m.language == 'Kotlin' %}selected{% endif %}>Kotlin</option>
+                    </select>
+                </p>
+                <p>이메일: <input type="email" name="member_email[]" value="{{ m.email }}" required></p>
+                <p>사진 URL: <input type="text" name="member_photo[]" value="{{ m.photo }}" placeholder="images/member1.jpg"></p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <button type="button" onclick="addMember()">팀원 추가</button>
+        <button type="submit">저장하기</button>
+    </form>
+</body>
+</html>
