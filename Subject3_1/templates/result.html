@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>결과 페이지</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f5f7fa; }
+        h1, h2 { text-align: center; color: #333; }
+        h3 { color: #5b7cff; border-bottom: 2px solid #eef1f7; padding-bottom: 8px; margin-top: 30px; margin-bottom: 20px; font-size: 20px; text-align: center; }
+        .member-card-container { text-align: center; margin-bottom: 30px; }
+        .member-card { 
+            border: 1px solid #ccc; 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin: 10px; 
+            width: 250px; 
+            display: inline-block; 
+            text-align: left; /* 내용 왼쪽 정렬 */
+            background-color: #fff; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
+            vertical-align: top;
+        }
+        img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; display: block; margin: 0 auto 10px auto; }
+        .label { font-weight: bold; color: #5b7cff; display: inline-block; width: 80px; }
+        .error { color: red; font-weight: bold; text-align: center; margin: 20px auto; border: 2px solid red; padding: 15px; background-color: #ffebeb; max-width: 600px; border-radius: 8px; }
+        footer { text-align: center; margin-top: 40px; }
+        button { 
+            background-color: #5b7cff; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            padding: 10px 20px; 
+            font-size: 15px; 
+            cursor: pointer; 
+            transition: background 0.3s; 
+        }
+        button:hover { background-color: #435de0; }
+        .summary { text-align: center; font-size: 1.1em; font-weight: bold; color: #333; padding: 10px; background-color: #eef1f7; border-radius: 6px; max-width: 700px; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <h1>팀명: {{ team_name }}</h1>
+    <h2>A2-3-1 과제 결과 출력</h2>
+
+    {% if error %}
+        <p class="error"> 성별 입력 오류 (팀원 1 모듈 결과): {{ error }}</p>
+    {% endif %}
+
+    <h3>팀장 정보</h3>
+    <div class="member-card-container">
+        <div class="member-card">
+            <p><span class="label">이름:</span> {{ leader_name }}</p>
+            <p><span class="label">성별:</span> {{ leader_gender }}</p>
+            <p><span class="label">학과:</span> {{ leader_department }}</p>
+            <p><span class="label">언어:</span> {{ leader_language }}</p>
+            <p><span class="label">이메일:</span> {{ leader_email }}</p>
+        </div>
+    </div>
+
+    <h3>팀원 상세 정보</h3>
+    <div class="member-card-container">
+        {% for member in members %}
+        <div class="member-card">
+            <p><span class="label">이름:</span> {{ member.name }}</p>
+            <p><span class="label">성별 (팀원1):</span> {{ member.gender }}</p>
+            <p><span class="label">역할:</span> {{ member.role }}</p>
+            <p><span class="label">학과:</span> {{ member.department }}</p>
+            <p><span class="label">언어 (팀원2):</span> {{ member.language }}</p>
+            <p><span class="label">이메일:</span> {{ member.email }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <footer>
+        <button type="button" onclick="window.location.href='/'">다시 입력하기</button>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>정보입력</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f5f7fa; }
+        h1 { color: #5b7cff; text-align: center; margin-bottom: 30px; }
+        h3 { color: #5b7cff; border-bottom: 2px solid #eef1f7; padding-bottom: 8px; margin-top: 30px; margin-bottom: 20px; font-size: 20px; }
+        form { max-width: 800px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+        .block { border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px; background-color: #fafafa; }
+        .block p { margin: 10px 0; display: flex; align-items: center; }
+        .block p input[type="text"], .block p input[type="email"], .block p select {
+            flex-grow: 1;
+            padding: 8px;
+            margin-left: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px 0 5px;
+            background-color: #5b7cff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        button:hover { background-color: #435de0; }
+        button[type="submit"] { background-color: #28a745; }
+        button[type="submit"]:hover { background-color: #1e7e34; }
+        form > p:first-child { display: flex; align-items: center; margin-bottom: 20px; }
+        form > p:first-child input { width: 50%; }
+    </style>
+    <script>
+        // 팀원 추가 기능 (기존 코드 그대로 유지)
+        function addMember() {
+            const container = document.getElementById("members");
+            const div = document.createElement("div");
+            div.className = "block";
+            div.innerHTML = `
+                <p>이름: <input type="text" name="member_name[]" required></p>
+                <p>성별:
+                    <select name="member_gender[]" required>
+                        <option value="">선택</option>
+                        <option value="남">남</option>
+                        <option value="여">여</option>
+                    </select>
+                </p>
+                <p>역할: <input type="text" name="member_role[]" required></p>
+                <p>학과: <input type="text" name="member_department[]" required></p>
+                <p>프로그래밍 언어:
+                    <select name="member_language[]" required>
+                        <option value="">선택</option>
+                        <option value="Python">Python</option>
+                        <option value="C">C</option>
+                        <option value="C++">C++</option>
+                        <option value="Java">Java</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Swift">Swift</option>
+                        <option value="Kotlin">Kotlin</option>
+                    </select>
+                </p>
+                <p>이메일: <input type="email" name="member_email[]" required></p>
+            `;
+            container.appendChild(div);
+        }
+    </script>
+</head>
+<body>
+    <h1>A2-3-1 팀 정보 입력 (Main Page)</h1>
+    <form action="/result" method="POST">
+        <p>팀명: <input type="text" name="team_name" value="" required></p>
+
+        <h3>팀장 정보 (미입력 시 기본값으로 처리됨)</h3>
+        <div class="block">
+            <p>이름: <input type="text" name="leader_name" value="" required></p>
+            <p>성별:
+                <select name="leader_gender" required>
+                    <option value="">선택</option>
+                    <option value="남">남</option>
+                    <option value="여">여</option>
+                </select>
+            </p>
+            <p>역할: <input type="text" name="leader_role" value="" required></p>
+            <p>학과: <input type="text" name="leader_department" value="" required></p>
+            <p>프로그래밍 언어:
+                <select name="leader_language" required>
+                    <option value="">선택</option>
+                    <option value="Python">Python</option>
+                    <option value="C">C</option>
+                    <option value="C++">C++</option>
+                    <option value="Java">Java</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Swift">Swift</option>
+                    <option value="Kotlin">Kotlin</option>
+                </select>
+            </p>
+            <p>이메일: <input type="email" name="leader_email" value="" required></p>
+        </div>
+
+        <h3>팀원 정보</h3>
+        <div id="members">
+            </div>
+
+        <button type="button" onclick="addMember()">팀원 추가</button>
+        <button type="submit">결과 출력 (Result Page)</button>
+    </form>
+</body>
+</html>
