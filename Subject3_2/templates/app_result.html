@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>팀정보 결과</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f5f7fa;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .member-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            width: 250px;
+            display: inline-block;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .label {
+            font-weight: bold;
+            color: #5b7cff;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+        }
+        button {
+            background-color: #5b7cff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #435de0;
+        }
+    </style>
+</head>
+<body>
+    <h1>팀명: {{ team_name }}</h1>
+
+    <h2>팀장 정보</h2>
+    <div class="member-card">
+        <img src="{{ url_for('static', filename=leader.photo) }}" alt="팀장 사진">
+        <p><span class="label">이름:</span> {{ leader.name }}</p>
+        <p><span class="label">성별:</span> {{ leader.gender }}</p>
+        <p><span class="label">학과:</span> {{ leader.department }}</p>
+        <p><span class="label">언어:</span> {{ leader.language }}</p>
+        <p><span class="label">이메일:</span> {{ leader.email }}</p>
+    </div>
+
+    <h2>팀원 정보</h2>
+    <div> {% for m in members %}
+        <div class="member-card">
+            <img src="{{ url_for('static', filename=m.photo) }}" alt="팀원 사진"> <p><span class="label">이름:</span> {{ m.name }}</p>
+            <p><span class="label">성별:</span> {{ m.gender }}</p>
+            <p><span class="label">역할:</span> {{ m.role }}</p>
+            <p><span class="label">학과:</span> {{ m.department }}</p>
+            <p><span class="label">언어:</span> {{ m.language }}</p>
+            <p><span class="label">이메일:</span> {{ m.email }}</p>
+        </div>
+    {% endfor %}
+    </div>
+
+    <footer>
+        <button type="button" onclick="window.location.href='/edit'">수정하기</button>
+        <button type="button" onclick="window.location.href='/'" >메인으로</button>
+    </footer>
+</body>
+</html>

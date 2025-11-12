@@ -1,0 +1,136 @@
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+    font-family: "Pretendard", Arial, sans-serif;
+    background-color: #f8f9fa; /* 밝은 배경 */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+h1 {
+    background-color: #5b7cff; /* 상단 바 색상 */
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin: 0;
+    font-size: 28px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h3 {
+    text-align: center;
+    color: #5b7cff;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+/* 비디오 섹션 */
+div:first-of-type {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #eef1f7;
+}
+
+/* 팀 정보 (Team Info) 섹션 스타일 */
+.team-info {
+    text-align: center;
+    padding: 20px 0;
+    margin: 30px auto;
+    width: 80%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.team-info h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+.team-info h3 {
+    color: #555;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.team-info p {
+    color: #666;
+    font-size: 15px;
+}
+
+/* 팀원 카드 컨테이너 */
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+}
+
+/* 팀원 개별 카드 (.member) 스타일을 .card 스타일로 변경 */
+.member {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+    border-top: 4px solid #5b7cff; /* 강조 라인 */
+}
+
+.member:hover {
+    transform: translateY(-5px); /* 호버 효과 추가 */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #ddd;
+}
+
+.member p {
+    margin: 5px 0;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.member p b {
+    color: #5b7cff; /* 레이블 강조 */
+    display: inline-block;
+    min-width: 60px; /* 레이블 너비 통일 */
+}
+
+/* 버튼 영역 */
+.btn-area {
+    text-align: center;
+    margin: 40px auto;
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+button {
+    margin: 10px;
+    padding: 12px 25px;
+    background-color: #5b7cff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #435de0;
+}

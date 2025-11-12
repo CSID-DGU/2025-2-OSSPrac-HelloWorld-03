@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>팀 연락처 관리 </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact_style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>팀 연락처 관리</h1>
+    </header>
+
+    <form action="/contact_save" method="POST">
+        <section>
+            <h2>팀장</h2>
+            <div class="container">
+                <div class="card">
+                    <img src="{{ url_for('static', filename=leader.photo) }}" alt="팀장 사진">
+                    <p class="name">{{ leader.name }}</p>
+                    <p class="role">팀장</p>
+                    <label class="info">전화번호:
+                        <input type="text" name="leader_phone" value="{{ leader.phone }}">
+                    </label>
+                    <label class="info">이메일:
+                        <input type="email" name="leader_email" value="{{ leader.email }}">
+                    </label>
+                </div>
+            </div>
+
+            <h2>팀원</h2>
+            <div class="container">
+                {% for m in members %}
+                <div class="card">
+                    <img src="{{ url_for('static', filename=m.photo) }}" alt="팀원 사진">
+                    <p class="name">{{ m.name }}</p>
+                    <p class="role">{{ m.role }}</p>
+
+                    <input type="hidden" name="member_name[]" value="{{ m.name }}">
+
+                    <label class="info">전화번호:
+                        <input type="text" name="member_phone[]" value="{{ m.phone }}">
+                    </label>
+                    <label class="info">이메일:
+                        <input type="email" name="member_email[]" value="{{ m.email }}">
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <footer>
+            <button type="submit">저장하기</button>
+            <button type="button" onclick="window.location.href='/'">메인으로</button>
+        </footer>
+    </form>
+</body>
+</html>

@@ -1,0 +1,80 @@
+body {
+    font-family: "Pretendard", Arial, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #5b7cff;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+h1 {
+    margin: 0;
+    font-size: 26px;
+}
+.container {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 260px;
+    padding: 20px;
+    text-align: center;
+}
+img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+.role {
+    color: #5b7cff;
+    margin-bottom: 6px;
+}
+.info {
+    display: inline-block;
+    font-size: 14px;
+    color: #555;
+    margin: 3px 0;
+}
+input[type="text"], input[type="email"] {
+    width: 85%;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 13px;
+}
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #eef1f7;
+    margin-top: 30px;
+}
+button {
+    margin: 5px;
+    padding: 8px 15px;
+    background-color: #5b7cff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+button:hover {
+    background-color: #435de0;
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>팀 정보 결과</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .member-card { border: 1px solid #ccc; border-radius: 10px; padding: 15px; margin: 10px; width: 250px; display: inline-block; text-align: center; background-color: #fafafa; }
+        img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; }
+    </style>
+</head>
+<body>
+    <h1>팀명: {{ team_name }}</h1>
+    <h2>팀장정보</h2>
+    <div class="member-card">
+        <img src="{{ leader.photo }}" alt="팀장 사진">
+        <p><b>이름:</b> {{ leader.name }}</p>
+        <p><b>학과:</b> {{ leader.department }}</p>
+        <p><b>전화:</b> {{ leader.phone }}</p>
+        <p><b>이메일:</b> {{ leader.email }}</p>
+    </div>
+
+    <h2>팀원 정보</h2>
+    {% for m in members %}
+    <div class="member-card">
+        <img src="{{ m.photo }}" alt="팀원 사진">
+        <p><b>이름:</b> {{ m.name }}</p>
+        <p><b>역할:</b> {{ m.role }}</p>
+        <p><b>학과:</b> {{ m.department }}</p>
+        <p><b>전화:</b> {{ m.phone }}</p>
+        <p><b>이메일:</b> {{ m.email }}</p>
+    </div>
+    {% endfor %}
+</body>
+
+</html>

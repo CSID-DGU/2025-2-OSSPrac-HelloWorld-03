@@ -1,0 +1,104 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+    font-family: "Pretendard", Arial, sans-serif;
+    background-color: #f5f7fa; /* 연한 배경 */
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    background-color: #5b7cff;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin: -20px -20px 30px -20px; /* body 패딩을 활용하여 상단에 붙임 */
+    font-size: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+h3 {
+    color: #5b7cff;
+    border-bottom: 2px solid #eef1f7;
+    padding-bottom: 8px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+/* 팀명 입력 필드 */
+form > p:first-child input[type="text"] {
+    width: calc(100% - 100px); /* 레이블 공간 확보 */
+    margin-left: 10px;
+}
+
+/* 팀장/팀원 정보 블록 (.block) */
+.block {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fafafa;
+}
+
+.block p {
+    margin: 10px 0;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.block p input[type="text"],
+.block p input[type="email"],
+.block p select {
+    flex-grow: 1; /* 입력 필드가 남은 공간을 채우도록 */
+    padding: 8px;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.block p input:focus,
+.block p select:focus {
+    border-color: #5b7cff;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(91, 124, 255, 0.2);
+}
+
+/* 버튼 스타일 */
+button {
+    margin: 10px 5px 0 5px;
+    padding: 10px 20px;
+    background-color: #5b7cff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"] {
+    background-color: #28a745; 
+}
+
+button[type="submit"]:hover {
+    background-color: #1e7e34;
+}
+
+button:hover {
+    background-color: #435de0;
+}
