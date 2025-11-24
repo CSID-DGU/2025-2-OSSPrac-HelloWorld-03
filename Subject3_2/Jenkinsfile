@@ -4,7 +4,9 @@ pipeline {
     environment {
         IMAGE_NAME = 'dongchandocker/team-helloworld'
         IMAGE_TAG  = 'latest'
-        DOCKERHUB_CREDENTIALS = 'docker-hub'  
+        // Jenkins Credentials에서 만든 ID랑 동일해야 함
+        DOCKERHUB_CREDENTIALS = 'docker-hub'
+    }
 
     stages {
 
