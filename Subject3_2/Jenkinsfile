@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = 'dongchandocker/team-helloworld'
+        IMAGE_TAG  = 'latest'
+        DOCKERHUB_CREDENTIALS = 'docker-hub'  
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+                dir('Subject3_2') {
+                    sh 'ls'
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir('Subject3_2') {
+                    sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
+                }
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                dir('Subject3_2') {
+                    withCredentials([
+                        usernamePassword(
+                            credentialsId: "${DOCKERHUB_CREDENTIALS}",
+                            usernameVariable: 'DOCKER_USER',
+                            passwordVariable: 'DOCKER_PASS'
+                        )
+                    ]) {
+                        sh '''
+                            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                            docker push ${IMAGE_NAME}:${IMAGE_TAG}
+                            docker logout
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Deploy with docker-compose') {
+            steps {
+                dir('Subject3_2') {
+                    sh '''
+                        docker-compose down || true
+                        docker-compose pull || true
+                        docker-compose up -d
+                    '''
+                }
+            }
+        }
+    }
+}
