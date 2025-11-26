@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = 'dongchandocker/team-helloworld'
+        IMAGE_NAME = '1mango/team-helloworld'
         IMAGE_TAG  = 'latest'
         // Jenkins Credentials에서 만든 ID랑 동일해야 함
         DOCKERHUB_CREDENTIALS = 'docker-hub'
