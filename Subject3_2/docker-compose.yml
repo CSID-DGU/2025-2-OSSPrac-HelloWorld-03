@@ -1,6 +1,5 @@
 services:
   app:
-    image: ooccasio/team-helloworld:latest
-    platform: linux/amd64  # ← 이 줄 추가
+    build: .  # image 대신 build
     ports:
       - "80:80"
