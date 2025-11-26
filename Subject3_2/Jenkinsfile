@@ -2,17 +2,14 @@ pipeline {
     agent any
 
     environment {
-        // 이미지 이름에 :latest 태그는 빌드 명령에서 붙일 것이므로 분리
-        IMAGE_REPO = '1mango/team-helloworld' 
+        IMAGE_NAME = '1mango/team-helloworld'
         IMAGE_TAG  = 'latest'
         // Jenkins Credentials에서 만든 ID랑 동일해야 함
         DOCKERHUB_CREDENTIALS = 'docker-hub'
-        // 멀티 아키텍처 빌드에 사용할 플랫폼 목록
-        TARGET_PLATFORMS = 'linux/amd64,linux/arm64' 
     }
 
     stages {
-        // ... (Checkout 스테이지는 그대로 유지) ...
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -22,15 +19,15 @@ pipeline {
             }
         }
 
-        // --- 여기서부터 수정 ---
-        
-        stage('Initialize Buildx') {
+        stage('Build Docker Image') {
             steps {
-                sh 'docker buildx create --use' // buildx 빌더 인스턴스 생성 및 사용 설정
+                dir('Subject3_2') {
+                    sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
+                }
             }
         }
 
-        stage('Build & Push Multi-Arch Image') {
+        stage('Push to Docker Hub') {
             steps {
                 dir('Subject3_2') {
                     withCredentials([
@@ -41,18 +38,8 @@ pipeline {
                         )
                     ]) {
                         sh '''
-                            # 1. 도커 허브 로그인
                             echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                            
-                            # 2. buildx를 사용해 멀티 플랫폼 이미지 빌드 및 즉시 푸시
-                            # --platform 옵션을 사용해 여러 아키텍처를 동시에 빌드합니다.
-                            # --push 플래그가 Manifest List를 생성하고 푸시까지 완료합니다.
-                            docker buildx build \
-                                --platform ${TARGET_PLATFORMS} \
-                                -t ${IMAGE_REPO}:${IMAGE_TAG} \
-                                --push .
-                                
-                            # 3. 로그아웃
+                            docker push ${IMAGE_NAME}:${IMAGE_TAG}
                             docker logout
                         '''
                     }
@@ -60,8 +47,6 @@ pipeline {
             }
         }
 
-        // --- (Deploy with docker-compose 스테이지는 그대로 유지) ---
-        
         stage('Deploy with docker-compose') {
             steps {
                 dir('Subject3_2') {
