@@ -1,8 +1,6 @@
-version: "3.9"
-
 services:
   app:
-    build: .
-    image: ganggui/team-intro:latest
+    image: ooccasio/team-helloworld:latest
+    platform: linux/amd64  # ← 이 줄 추가
     ports:
-      - "8000:8000"
+      - "80:80"
